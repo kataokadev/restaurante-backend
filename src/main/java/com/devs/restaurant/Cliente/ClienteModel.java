@@ -1,10 +1,15 @@
 package com.devs.restaurant.Cliente;
 
+import com.devs.restaurant.Pedido.PedidoModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -25,9 +30,8 @@ public class ClienteModel {
     @Column
     private String telefone;
 
-    @Column
-    @JoinColumn(name = "pedido_id")
-
-    private Long pedidoId;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<PedidoModel> pedido = new ArrayList<>();
 
 }

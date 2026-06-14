@@ -30,11 +30,12 @@ public class ClienteController {
     }
 
     @PatchMapping("/atualizar/{id}")
-    public ClienteModel AtualizarClientePorId(@PathVariable("id") Long id, ClienteModel clienteModel) {
+    public ClienteModel AtualizarClientePorId(@PathVariable("id") Long id,@RequestBody ClienteModel clienteModel) {
         return clienteService.atualizarCliente(id, clienteModel);
     }
 
-    public void DelteClientePorId(Long id) {
+    @DeleteMapping("/deletar/{id}")
+    public void DelteClientePorId(@PathVariable("id") Long id) {
         clienteService.deletarCliente(id);
     }
 
